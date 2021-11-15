@@ -8,8 +8,7 @@
     <title>Grades</title>
 </head>
 <script>
-    let passwords = ["98c6af8f4ef56590a376f78515db87ed"]
-    if (!passwords.includes(prompt("Введите код приглашения:", ""))) {
+    if (prompt("Введите код приглашения:", "") == "abc") {
         window.location.replace("access_denied.html");
     }
 </script>
