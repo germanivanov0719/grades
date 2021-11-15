@@ -7,6 +7,12 @@
     <link rel="stylesheet" href="index.css">
     <title>Grades</title>
 </head>
+<script>
+    let passwords = ["98c6af8f4ef56590a376f78515db87ed"]
+    if (!passwords.includes(prompt("Введите код приглашения:", ""))) {
+        window.location.replace("access_denied.html");
+    }
+</script>
 <body>
     <!-- M1 — mean before the new grade -->
     <!-- s — sum of all previous grades' weights  -->
@@ -65,6 +71,14 @@
             <p>До 2: </p>
             <p id="res-2" class="res"></p>
         </div>
+    </div>
+    <hr/>
+    <h3>Контакты и другая информация</h3>
+    <div id="Contacts" class="block">
+        <a href="mailto: germanivanov0719@gmail.com">Email</a>
+        <a href="https://github.com/germanivanov0719">GitHub</a>
+        <a href="https://dnevnik.mos.ru/">Дневник МЭШ</a>
+        <a href="https://github.com/germanivanov0719/grade-improvemets-calculator">Этот проект на GitHub</a>
     </div>
 </body>
 </html>

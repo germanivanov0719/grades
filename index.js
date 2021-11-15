@@ -1,3 +1,6 @@
+alert("Вы зашли на сайт, который находится в бета-тестировании. В случае обнаружения проблемы, напишите мне на электронную почту, указанную внизу страницы. Также буду рад услышать Ваши предложения по развитию сайта.")
+
+
 function newMean(){
     let M1 = parseFloat(document.getElementById("M1-input").value);
     let s = parseFloat(document.getElementById("s-input").value);
