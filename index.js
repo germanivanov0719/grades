@@ -1,4 +1,4 @@
-alert("Вы зашли на сайт, который находится в бета-тестировании. В случае обнаружения проблемы, напишите мне на электронную почту, указанную внизу страницы. Также буду рад услышать Ваши предложения по развитию сайта.")
+// alert("Вы зашли на сайт, который находится в бета-тестировании. В случае обнаружения проблемы, напишите мне на электронную почту, указанную внизу страницы. Также буду рад услышать Ваши предложения по развитию сайта.")
 
 
 function newMean(){
@@ -14,7 +14,19 @@ function newMean(){
     tillGoals(res, s + w)
 }
 
+function customRound(n){
+    if (document.getElementById("perform-calculations-round").checked){
+        // console.log(Math.round((n) * 100) / 100)
+        return Math.round((n) * 100) / 100
+        
+    }
+    else{
+        return n
+    }
+}
+
 function tillGoals(mean=parseFloat(document.getElementById("M1-input").value), n=parseFloat(document.getElementById("s-input").value)){
+    let f_rq = document.getElementById("fraction-input").value; 
     if (mean == parseFloat(document.getElementById("M1-input").value)) {
         document.getElementById("M2-input").textContent = "Не изменялся";
     }
@@ -26,13 +38,13 @@ function tillGoals(mean=parseFloat(document.getElementById("M1-input").value), n
     c_m = mean;
     c_n = n;
     rq = 0
-    if (mean >= 4.51) {
+    if (mean >= parseFloat(4 + '.' + f_rq)) {
         r[0] = 0
     }
     else {
-        while (c_m < 4.51) {
+        while (customRound(c_m) < parseFloat(4 + '.' + f_rq)) {
             rq += 1
-            c_m = ((c_m * c_n + 5) / (c_n + 1))
+            c_m = (c_m * c_n + 5) / (c_n + 1)
             c_n += 1
             console.log(c_m)
         }
@@ -45,16 +57,16 @@ function tillGoals(mean=parseFloat(document.getElementById("M1-input").value), n
     c_m = mean;
     c_n = n;
     rq = 0
-    if (mean < 3.51) {
-        while (c_m < 3.51) {
+    if (mean < parseFloat(3 + '.' + f_rq)) {
+        while (customRound(c_m) < parseFloat(3 + '.' + f_rq)) {
             rq += 1
             c_m = ((c_m * c_n + 4) / (c_n + 1))
             c_n += 1
             console.log(c_m)
         }
     }
-    else if (c_m >= 4.51) {
-        while (c_m >= 4.51) {
+    else if (customRound(c_m) >= parseFloat(4 + '.' + f_rq)) {
+        while (customRound(c_m) >= parseFloat(4 + '.' + f_rq)) {
             rq -= 1
             c_m = ((c_m * c_n + 4) / (c_n + 1))
             c_n += 1
@@ -68,16 +80,16 @@ function tillGoals(mean=parseFloat(document.getElementById("M1-input").value), n
     c_m = mean;
     c_n = n;
     rq = 0
-    if (mean < 2.51) {
-        while (c_m < 2.51) {
+    if (mean < parseFloat(2 + '.' + f_rq)) {
+        while (customRound(c_m) < parseFloat(2 + '.' + f_rq)) {
             rq += 1
             c_m = ((c_m * c_n + 3) / (c_n + 1))
             c_n += 1
             console.log(c_m)
         }
     }
-    else if (c_m >= 3.51) {
-        while (c_m >= 3.51) {
+    else if (c_m >= parseFloat(3 + '.' + f_rq)) {
+        while (c_m >= parseFloat(3 + '.' + f_rq)) {
             rq -= 1
             c_m = ((c_m * c_n + 3) / (c_n + 1))
             c_n += 1
@@ -91,8 +103,8 @@ function tillGoals(mean=parseFloat(document.getElementById("M1-input").value), n
     c_m = mean;
     c_n = n;
     rq = 0
-    if (c_m >= 2.51) {
-        while (c_m >= 2.51) {
+    if (customRound(c_m) >= parseFloat(2 + '.' + f_rq)) {
+        while (customRound(c_m) >= parseFloat(2 + '.' + f_rq)) {
             rq -= 1
             c_m = ((c_m * c_n + 2) / (c_n + 1))
             c_n += 1
