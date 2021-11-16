@@ -15,10 +15,14 @@ function newMean(){
 }
 
 function tillGoals(mean=parseFloat(document.getElementById("M1-input").value), n=parseFloat(document.getElementById("s-input").value)){
+    if (mean == parseFloat(document.getElementById("M1-input").value)) {
+        document.getElementById("M2-input").textContent = "Не изменялся";
+    }
     // console.log(mean)
     r = [0, 0, 0, 0];
 
     // 5
+    console.log("5:")
     c_m = mean;
     c_n = n;
     rq = 0
@@ -30,13 +34,14 @@ function tillGoals(mean=parseFloat(document.getElementById("M1-input").value), n
             rq += 1
             c_m = ((c_m * c_n + 5) / (c_n + 1))
             c_n += 1
-            // console.log(c_m)
+            console.log(c_m)
         }
         r[0] = rq
     }
 
 
     // 4
+    console.log("4:")
     c_m = mean;
     c_n = n;
     rq = 0
@@ -45,6 +50,7 @@ function tillGoals(mean=parseFloat(document.getElementById("M1-input").value), n
             rq += 1
             c_m = ((c_m * c_n + 4) / (c_n + 1))
             c_n += 1
+            console.log(c_m)
         }
     }
     else if (c_m >= 4.51) {
@@ -52,12 +58,13 @@ function tillGoals(mean=parseFloat(document.getElementById("M1-input").value), n
             rq -= 1
             c_m = ((c_m * c_n + 4) / (c_n + 1))
             c_n += 1
-            // console.log(c_m)
+            console.log(c_m)
         }
     }
     r[1] = rq
 
     // 3
+    console.log("3:")
     c_m = mean;
     c_n = n;
     rq = 0
@@ -66,6 +73,7 @@ function tillGoals(mean=parseFloat(document.getElementById("M1-input").value), n
             rq += 1
             c_m = ((c_m * c_n + 3) / (c_n + 1))
             c_n += 1
+            console.log(c_m)
         }
     }
     else if (c_m >= 3.51) {
@@ -73,12 +81,13 @@ function tillGoals(mean=parseFloat(document.getElementById("M1-input").value), n
             rq -= 1
             c_m = ((c_m * c_n + 3) / (c_n + 1))
             c_n += 1
-            // console.log(c_m)
+            console.log(c_m)
         }
     }
     r[2] = rq
 
     // 2
+    console.log("2:")
     c_m = mean;
     c_n = n;
     rq = 0
@@ -87,10 +96,24 @@ function tillGoals(mean=parseFloat(document.getElementById("M1-input").value), n
             rq -= 1
             c_m = ((c_m * c_n + 2) / (c_n + 1))
             c_n += 1
-            // console.log(c_m)
+            console.log(c_m)
         }
     }
     r[3] = rq
+
+    if (r[0] == 0) {
+        r[0] = "Готово"
+    }
+    if (r[1] == 0) {
+        r[1] = "Готово"
+    }
+    if (r[2] == 0) {
+        r[2] = "Готово"
+    }
+    if (r[3] == 0) {
+        r[3] = "Готово"
+    }
+
 
     document.getElementById("res-5").textContent = r[0];
     document.getElementById("res-4").textContent = r[1];
