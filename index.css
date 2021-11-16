@@ -6,13 +6,16 @@ body {
     background-color: var(--dark-color);
     color: #fff;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    padding: 0 20px;
+    padding: 0 10px;
 }
 
 @media screen and (min-width: 500px) {
     body {
         padding: 0 10vw;
     }    
+    h1 {
+        font-size: 30px;
+    }
 }
 
 @media screen and (min-width: 1000px) {
