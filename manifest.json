@@ -4,14 +4,14 @@
   "display": "standalone",
   "name": "Grades",
   "orientation": "any",
-  "scope": "/grade-improvements-calculator",
+  "scope": "grade-improvemets-calculator/",
   "short_name": "Grades",
-  "start_url": "/grade-improvements-calculator",
+  "start_url": "grade-improvemets-calculator/",
   "theme_color": "none",
   "icons": [
     {
       "src": "/images/icon.png",
-      "sizes": "1024x1024"
+      "sizes": "1024x1024",
     }
   ]
 }
