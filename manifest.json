@@ -4,9 +4,9 @@
   "display": "standalone",
   "name": "Grades",
   "orientation": "any",
-  "scope": "https://germanivanov0719.github.io/grade-improvemets-calculator/",
+  "scope": "grade-improvemets-calculator/",
   "short_name": "Grades",
-  "start_url": "https://germanivanov0719.github.io/grade-improvemets-calculator/",
+  "start_url": "grade-improvemets-calculator/",
   "theme_color": "none",
   "icons": [
     {
