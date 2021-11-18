@@ -1,11 +1,19 @@
 {
-  "background_color": "#ffffff",
+  "background_color": "none",
   "dir": "ltr",
   "display": "standalone",
-  "name": "germanivanov0719.github",
+  "name": "Grades",
   "orientation": "any",
   "scope": "/",
-  "short_name": "germanivanov0719.github",
+  "short_name": "Grades",
   "start_url": "/",
-  "theme_color": "#ffffff"
+  "theme_color": "none",
+  "icons": [
+    {
+      "src": "/images/icon-1.png",
+      "type": "image/png",
+      "sizes": "1024x1024",
+      "purpose": "any"
+    }
+  ]
 }
