@@ -6,7 +6,7 @@
   "orientation": "any",
   "scope": "grade-improvemets-calculator/",
   "short_name": "Grades",
-  "start_url": "grade-improvemets-calculator/",
+  "start_url": "/",
   "theme_color": "none",
   "icons": [
     {
