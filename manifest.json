@@ -1,7 +1,7 @@
 {
   "background_color": "none",
   "dir": "ltr",
-  "display": "standalone",
+  "display": "browser",
   "name": "Grades",
   "orientation": "any",
   "scope": "grade-improvemets-calculator/",
