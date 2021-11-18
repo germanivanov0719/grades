@@ -4,9 +4,7 @@
   "display": "standalone",
   "name": "Grades",
   "orientation": "any",
-  "scope": "./",
   "short_name": "Grades",
-  "start_url": "grade-improvemets-calculator/",
   "theme_color": "none",
   "icons": [
     {
