@@ -9,6 +9,10 @@ function newMean(){
     // console.log(M1, s, m, w)
     // console.log(s * M1, m * w, s + w)
     res = ((s * M1 + m * w) / (s + w))
+    if (!res) {
+        alert("Недостаточно данных");
+        return 0
+    }
     // console.log(res)
     document.getElementById("M2-input").textContent = res.toFixed(3);
     tillGoals(res, s + w)
@@ -27,6 +31,10 @@ function customRound(n){
 
 function tillGoals(mean=parseFloat(document.getElementById("M1-input").value), n=parseFloat(document.getElementById("s-input").value)){
     let f_rq = document.getElementById("fraction-input").value; 
+    if (!mean || !n || !f_rq) {
+        alert("Недостаточно данных");
+        return 0
+    }
     if (mean == parseFloat(document.getElementById("M1-input").value)) {
         document.getElementById("M2-input").textContent = "Не изменялся";
     }
