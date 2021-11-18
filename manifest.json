@@ -3,6 +3,8 @@
   "dir": "ltr",
   "display": "standalone",
   "name": "Grades",
+  "scope": "./",
+  "start_url": "./",
   "orientation": "any",
   "short_name": "Grades",
   "theme_color": "none",
