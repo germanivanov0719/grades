@@ -10,16 +10,9 @@
   "theme_color": "none",
   "icons": [
     {
-      "src": "/images/icon-1.png",
+      "src": "/images/icon.png",
       "type": "image/png",
       "sizes": "1024x1024",
-      "purpose": "any"
-    },
-    {
-        "src": "https://germanivanov0719.github.io/grade-improvemets-calculator/images/icon.png",
-        "type": "image/png",
-        "sizes": "1024x1024",
-        "purpose": "any"
     }
   ]
 }
