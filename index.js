@@ -1,5 +1,17 @@
 // alert("Вы зашли на сайт, который находится в бета-тестировании. В случае обнаружения проблемы, напишите мне на электронную почту, указанную внизу страницы. Также буду рад услышать Ваши предложения по развитию сайта.")
 
+populateStorage()
+
+
+function populateStorage() {
+    if (!localStorage['fraction_up']){
+        localStorage['fraction_up'] = '51';
+    }
+    if (!localStorage['perform-calculations-round']){
+        localStorage['perform-calculations-round'] = 'True';
+    }
+    // console.log(localStorage['perform-calculations-round'], localStorage['fraction_up'])
+}
 
 function newMean(){
     let M1 = parseFloat(document.getElementById("M1-input").value);
@@ -19,10 +31,10 @@ function newMean(){
 }
 
 function customRound(n){
-    if (document.getElementById("perform-calculations-round").checked){
+    a = localStorage['perform-calculations-round']
+    if (a && a != 'false'){
         // console.log(Math.round((n) * 100) / 100)
         return Math.round((n) * 100) / 100
-        
     }
     else{
         return n
@@ -30,7 +42,8 @@ function customRound(n){
 }
 
 function tillGoals(mean=parseFloat(document.getElementById("M1-input").value), n=parseFloat(document.getElementById("s-input").value)){
-    let f_rq = document.getElementById("fraction-input").value; 
+    let f_rq = localStorage['fraction_up']; 
+    console.log(localStorage)
     if (!mean || !n || !f_rq) {
         alert("Недостаточно данных");
         return 0

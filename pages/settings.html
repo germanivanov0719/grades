@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/index.css">
+    <link rel="icon" href="/images/icon.png">
+    <title>Настройки</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y0HKHLCHLM"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-Y0HKHLCHLM');
+    </script> -->
+    <!-- PWA -->
+    <link rel="manifest" href="manifest.json"/>
+    <script type="module">
+        import 'https://cdn.jsdelivr.net/npm/@pwabuilder/pwaupdate';
+        const el = document.createElement('pwa-update');
+        document.body.appendChild(el);
+    </script>
+    <!-- JQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div id="navbar"></div>
+    <script>$(function(){
+        $("#navbar").load("/res/navbar.html")});
+    </script>
+    <h1>Настройки</h1>
+    <hr/>
+    <h3>Вычисления</h3>
+    <div id="settings-table">
+        <div id="fraction-block" class="block">
+            <p>Дробная часть для округления в высшую сторону: </p>
+            <div class="separator"></div>
+            <p style="margin-right: 3px;">.</p>
+            <input type="number" id="fraction-input" value="51"></input>
+        </div>
+        <div id="round-calculations" class="block">
+            <p>Округлять значения среднего балла при вычислениях: </p>
+            <input type="checkbox" id="perform-calculations-round" checked=1></input>
+        </div>
+    </div>
+    <hr/>
+    <h3>Действия</h3>
+    <div class="block">
+        <button id="save" onclick="save()">Сохранить</button>
+        <button id="reset" onclick="reset()">Сбросить</button>
+    </div>
+</body>
+</html>
+<script src="settings.js"></script>
+<script src='/index.js'></script>
