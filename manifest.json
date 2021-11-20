@@ -10,7 +10,7 @@
   "theme_color": "none",
   "icons": [
     {
-      "src": "icon.png",
+      "src": "images/icon.png",
       "sizes": "1024x1024"
     }
   ]
