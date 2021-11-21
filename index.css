@@ -97,3 +97,8 @@ a {
     font-size: 1.3em;
     text-decoration: 0;
 }
+
+.branding {
+    text-decoration: none;
+    text-transform: uppercase;
+}
