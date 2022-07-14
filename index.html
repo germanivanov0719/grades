@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- <link rel="stylesheet" href="index.css" /> -->
+    <!-- Icon -->
     <link rel="icon" href="images/icon.png" />
     <title>Grades</title>
     <!-- Bootstrap 5.2.0 -->
@@ -14,11 +14,12 @@
       integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
       crossorigin="anonymous"
     />
+    <!-- Google Icons -->
     <link
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet"
     />
-    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <!-- Google Analytics -->
     <script
       async
       src="https://www.googletagmanager.com/gtag/js?id=G-Y0HKHLCHLM"
@@ -31,33 +32,30 @@
       gtag("js", new Date());
       gtag("config", "G-Y0HKHLCHLM");
     </script>
-    <!-- PWA -->
+    <!-- PWA Manifest -->
     <link rel="manifest" href="manifest.json" />
-    <script type="module">
-      import "https://cdn.jsdelivr.net/npm/@pwabuilder/pwaupdate";
-      const el = document.createElement("pwa-update");
-      document.body.appendChild(el);
-    </script>
-    <style>
-      input[type="number"]::-webkit-inner-spin-button,
-      input[type="number"]::-webkit-outer-spin-button {
-        opacity: 1;
-      }
-    </style>
+    <!-- PWA Web Workers -->
+    <!-- custom CSS -->
+    <link rel="stylesheet" type="text/css" href="css/enable-spin-buttons.css" />
   </head>
-  <body class="container">
+  <body class="container my-3">
     <!-- 
         M1 — mean before the new grade 
         s — sum of all previous grades' weights 
         m — new grade
         w — weight of new grade
         M2 — result (new mean) -->
-    <div id="navbar class="row">
-      <a class="col" href="./index.html">Grades</a>
-      <!-- <div class="separator"></div> -->
-      <a href="./pages/settings.html" class="col">
-        <span class="material-icons" alt="settings">settings</span>
-      </a>
+    <div class="grid">
+      <div class="row align-items-center justify-content-between">
+        <div class="col flex-grow-0">
+          <a href="./index.html">Grades</a>
+        </div>
+        <div class="col flex-grow-0">
+          <a href="./pages/settings.html">
+            <span class="material-icons" alt="settings">settings</span>
+          </a>
+        </div>
+      </div>
     </div>
 
     <h1 class="text-center">Калькулятор среднего балла</h1>
@@ -68,32 +66,32 @@
         <div class="col">
           <p class="my-2">Начальный средний балл:</p>
         </div>
-        <div class="col-sm text-end">
-          <input class="text-end w-25" type="number" id="M1-input" />
+        <div class="col text-end">
+          <input class="text-end w-50" type="number" id="M1-input" />
         </div>
       </div>
       <div class="row align-items-center my-3">
         <div class="col">
           <p class="my-2">Сумма весов уже имеющихся оценок:</p>
         </div>
-        <div class="col-sm text-end">
-          <input class="text-end w-25" type="number" id="s-input" />
+        <div class="col text-end">
+          <input class="text-end w-50" type="number" id="s-input" />
         </div>
       </div>
       <div class="row align-items-center my-3">
         <div class="col">
           <p class="my-2">Новая оценка:</p>
         </div>
-        <div class="col-sm text-end">
-          <input class="text-end w-25" type="number" id="m-input" />
+        <div class="col text-end">
+          <input class="text-end w-50" type="number" id="m-input" />
         </div>
       </div>
       <div class="row align-items-center my-3">
         <div class="col">
           <p class="my-2">Вес новой оценки:</p>
         </div>
-        <div class="col-sm text-end">
-          <input class="text-end w-25" id="w-input" type="number" value="1" />
+        <div class="col text-end">
+          <input class="text-end w-50" id="w-input" type="number" value="1" />
         </div>
       </div>
     </div>
