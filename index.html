@@ -1,100 +1,129 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="index.css">
-    <link rel="icon" href="images/icon.png">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="index.css" />
+    <link rel="icon" href="images/icon.png" />
     <title>Grades</title>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
     <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y0HKHLCHLM"></script>
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-Y0HKHLCHLM"
+    ></script>
     <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-Y0HKHLCHLM');
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-Y0HKHLCHLM");
     </script>
     <!-- PWA -->
     <link rel="manifest" href="manifest.json" />
     <script type="module">
-        import 'https://cdn.jsdelivr.net/npm/@pwabuilder/pwaupdate';
-        const el = document.createElement('pwa-update');
-        document.body.appendChild(el);
+      import "https://cdn.jsdelivr.net/npm/@pwabuilder/pwaupdate";
+      const el = document.createElement("pwa-update");
+      document.body.appendChild(el);
     </script>
     <!-- JQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-</head>
-<body>
-    <!-- M1 — mean before the new grade -->
-    <!-- s — sum of all previous grades' weights  -->
-    <!-- m — new grade -->
-    <!-- w — weight of new grade -->
-    <!-- M2 — result (new mean) -->
-    <div id="navbar"></div>
-    <script>$(function(){
-        $("#navbar").load("./res/navbar.html")});
-    </script>
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <!-- 
+        M1 — mean before the new grade 
+        s — sum of all previous grades' weights 
+        m — new grade
+        w — weight of new grade
+        M2 — result (new mean) -->
+    <div id="navbar">
+      <a class="branding" href="./index.html">Grades</a>
+      <div class="separator"></div>
+      <a href="./pages/settings.html">
+        <span class="material-icons">settings</span>
+      </a>
+    </div>
+
     <h1>Калькулятор среднего балла</h1>
-    <hr/>
+    <hr />
     <h3>Ввод данных</h3>
     <div id="table-input">
-        <div id="M1-block" class="block">
-            <p>Начальный средний балл: </p>
-            <input type="number" id="M1-input"/>
-        </div>
-        <div id="s-block" class="block">
-            <p>Сумма весов уже имеющихся оценок: </p>
-            <input type="number" id="s-input"/>
-        </div>
-        <div id="m-block" class="block">
-            <p>Новая оценка: </p>
-            <input type="number" id="m-input"/>
-        </div>
-        <div id="w-block" class="block">
-            <p>Вес новой оценки: </p>
-            <input id="w-input" type="number" value="1"/>
-        </div>
+      <div id="M1-block" class="block">
+        <p>Начальный средний балл:</p>
+        <input type="number" id="M1-input" />
+      </div>
+      <div id="s-block" class="block">
+        <p>Сумма весов уже имеющихся оценок:</p>
+        <input type="number" id="s-input" />
+      </div>
+      <div id="m-block" class="block">
+        <p>Новая оценка:</p>
+        <input type="number" id="m-input" />
+      </div>
+      <div id="w-block" class="block">
+        <p>Вес новой оценки:</p>
+        <input id="w-input" type="number" value="1" />
+      </div>
     </div>
-    <hr/>
+    <hr />
     <h3>Функции</h3>
     <div id="calculate">
-        <p>Вычислить: </p>
-        <div class="separator"></div>
-        <button id="calculate-new-mean" class="calculate-button" onclick="newMean()">Новый средний балл</button>
-        <button id=calculate-remainings class="calculate-button" onclick="tillGoals()">Количество оценок до цели</button>
+      <p>Вычислить:</p>
+      <div class="separator"></div>
+      <button
+        id="calculate-new-mean"
+        class="calculate-button"
+        onclick="newMean()"
+      >
+        Новый средний балл
+      </button>
+      <button
+        id="calculate-remainings"
+        class="calculate-button"
+        onclick="tillGoals()"
+      >
+        Количество оценок до цели
+      </button>
     </div>
-    <hr/>
+    <hr />
     <h3>Результаты</h3>
     <div id="table-output">
-        <div id="M2-block" class="block">
-            <p>Средний балл: </p>
-            <p id="M2-input" class="res"></p>
-        </div>
-        <div id="5-block" class="block">
-            <p>До 5: </p>
-            <p id="res-5" class="res"></p>
-        </div>
-        <div id="4-block" class="block">
-            <p>До 4: </p>
-            <p id="res-4" class="res"></p>
-        </div>
-        <div id="3-block" class="block">
-            <p>До 3: </p>
-            <p id="res-3" class="res"></p>
-        </div>
-        <div id="2-block" class="block">
-            <p>До 2: </p>
-            <p id="res-2" class="res"></p>
-        </div>
+      <div id="M2-block" class="block">
+        <p>Средний балл:</p>
+        <p id="M2-input" class="res"></p>
+      </div>
+      <div id="5-block" class="block">
+        <p>До 5:</p>
+        <p id="res-5" class="res"></p>
+      </div>
+      <div id="4-block" class="block">
+        <p>До 4:</p>
+        <p id="res-4" class="res"></p>
+      </div>
+      <div id="3-block" class="block">
+        <p>До 3:</p>
+        <p id="res-3" class="res"></p>
+      </div>
+      <div id="2-block" class="block">
+        <p>До 2:</p>
+        <p id="res-2" class="res"></p>
+      </div>
     </div>
-    <hr/>
+    <hr />
     <h3>Контакты</h3>
     <div id="Contacts" class="block">
-        <a href="mailto:germanivanov0719@gmail.com">Email</a>
-        <a href="https://github.com/germanivanov0719/grade-improvemets-calculator">GitHub</a>
+      <a href="mailto:germanivanov0719@gmail.com">Email</a>
+      <a href="https://github.com/germanivanov0719/grades">GitHub</a>
     </div>
-</body>
+  </body>
 </html>
 <script src="index.js"></script>
