@@ -7,7 +7,7 @@
   "start_url": "./",
   "orientation": "any",
   "short_name": "Grades",
-  "theme_color": "none",
+  "theme_color": "#2b2b2b",
   "icons": [
     {
       "src": "images/icon.png",
