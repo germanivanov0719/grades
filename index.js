@@ -34,12 +34,6 @@ function customRound(n) {
 }
 
 function getMark(n) {
-  // 4.000007299376601 -> 5
-  // 4.000007299270041 -> 5
-  // 4.000007299163483 -> 5
-  // 4.0000072990569295 -> 5
-  // 4.000007298950378 -> 5
-  // 4.000007298843831 -> 5
   let goal = parseInt(n);
   let maxGrade = parseFloat(`${goal}.${localStorage["fraction_up"]}`);
   let minGrade = parseFloat(`${goal - 1}.${localStorage["fraction_up"]}`);
@@ -63,9 +57,8 @@ function calcTillGoal(mean, weight, goal, mark = goal) {
   }
   let negativeR = getMark(mean) > goal;
   while (getMark(mean) != goal) {
-    // console.log(mean);
     r += negativeR ? -1 : 1;
-    mean = (mean * weight + mark) / (weight + 1);
+    mean = customRound((mean * weight + mark) / (weight + 1));
     weight += 1;
   }
   return r;
@@ -87,7 +80,6 @@ function tillGoals(mean, n) {
   }
   let r = [];
   for (let i = 0; i < 4; i++) {
-    // console.log(calcTillGoal(mean, n, 5 - i));
     r.push(calcTillGoal(mean, n, 5 - i));
   }
   console.log(r);
