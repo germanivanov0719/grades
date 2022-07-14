@@ -46,14 +46,14 @@ h1 {
   justify-content: space-between;
 }
 
-input {
+/* input {
   border-radius: 4px;
   width: 50px;
   border: 0;
   outline: 0;
   text-align: justify;
   padding: 3px;
-}
+} */
 
 button {
   border-radius: 4px;
