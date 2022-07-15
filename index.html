@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- Icon -->
-    <link rel="icon" href="images/icon.png" />
+    <link rel="icon" href="images/icon.svg" />
     <title>Grades</title>
     <!-- Bootstrap 5.2.0 -->
     <link
@@ -37,6 +37,7 @@
     <!-- PWA Web Workers -->
     <!-- custom CSS -->
     <link rel="stylesheet" type="text/css" href="css/enable-spin-buttons.css" />
+    <link rel="stylesheet" type="text/css" href="css/dark.css" />
   </head>
   <body class="container my-3">
     <!-- 
@@ -45,14 +46,12 @@
         m — new grade
         w — weight of new grade
         M2 — result (new mean) -->
-    <div class="grid">
+    <div class="grid mb-3">
       <div class="row align-items-center justify-content-between">
-        <div class="col flex-grow-0">
-          <a href="./index.html">Grades</a>
-        </div>
-        <div class="col flex-grow-0">
-          <a href="./pages/settings.html">
-            <span class="material-icons" alt="settings">settings</span>
+        <div class="col flex-grow-0"></div>
+        <div class="col flex-grow-0 text-nowrap">
+          <a class="text-decoration-none" href="./pages/settings.html">
+            Настройки 〉
           </a>
         </div>
       </div>
@@ -67,7 +66,11 @@
           <p class="my-2">Начальный средний балл:</p>
         </div>
         <div class="col text-end">
-          <input class="text-end w-50" type="number" id="M1-input" />
+          <input
+            class="text-end w-50 rounded-1 border"
+            type="number"
+            id="M1-input"
+          />
         </div>
       </div>
       <div class="row align-items-center my-3">
@@ -75,7 +78,11 @@
           <p class="my-2">Сумма весов уже имеющихся оценок:</p>
         </div>
         <div class="col text-end">
-          <input class="text-end w-50" type="number" id="s-input" />
+          <input
+            class="text-end w-50 rounded-1 border"
+            type="number"
+            id="s-input"
+          />
         </div>
       </div>
       <div class="row align-items-center my-3">
@@ -83,7 +90,11 @@
           <p class="my-2">Новая оценка:</p>
         </div>
         <div class="col text-end">
-          <input class="text-end w-50" type="number" id="m-input" />
+          <input
+            class="text-end w-50 rounded-1 border"
+            type="number"
+            id="m-input"
+          />
         </div>
       </div>
       <div class="row align-items-center my-3">
@@ -91,7 +102,12 @@
           <p class="my-2">Вес новой оценки:</p>
         </div>
         <div class="col text-end">
-          <input class="text-end w-50" id="w-input" type="number" value="1" />
+          <input
+            class="text-end w-50 rounded-1 border"
+            id="w-input"
+            type="number"
+            value="1"
+          />
         </div>
       </div>
     </div>

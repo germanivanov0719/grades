@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- Icon -->
-    <link rel="icon" href="../images/icon.png" />
+    <link rel="icon" href="images/icon.svg" />
     <title>Grades</title>
     <!-- Bootstrap 5.2.0 -->
     <link
@@ -36,18 +36,21 @@
     <link rel="manifest" href="manifest.json" />
     <!-- PWA Web Workers -->
     <!-- custom CSS -->
-    <link rel="stylesheet" type="text/css" href="css/enable-spin-buttons.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../css/enable-spin-buttons.css"
+    />
+    <link rel="stylesheet" type="text/css" href="../css/dark.css" />
   </head>
   <body class="container my-3">
-    <div class="grid">
+    <div class="grid mb-3">
       <div class="row align-items-center justify-content-between">
-        <div class="col flex-grow-0">
-          <a href="../index.html">Grades</a>
+        <div class="col flex-grow-0 text-nowrap">
+          <a class="text-decoration-none" href="../index.html">〈 Назад</a>
         </div>
         <div class="col flex-grow-0">
-          <a href="./settings.html">
-            <span class="material-icons" alt="settings">settings</span>
-          </a>
+          <a href="./settings.html"> </a>
         </div>
       </div>
     </div>
@@ -62,7 +65,12 @@
         <div class="col text-end row align-items-center justify-content-end">
           <div class="col-auto my-2 w-0 px-0"><p class="m-0 p-0">.</p></div>
           <div class="col-auto text-end w-50">
-            <input type="number" class="w-100" id="fraction-input" value="51" />
+            <input
+              type="number"
+              class="w-100 border rounded-1"
+              id="fraction-input"
+              value="51"
+            />
           </div>
         </div>
       </div>

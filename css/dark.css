@@ -1,0 +1,44 @@
+@media (prefers-color-scheme: dark) {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  small {
+    color: white;
+  }
+
+  hr {
+    border-color: white;
+  }
+
+  .text-muted {
+    color: lightgray !important;
+  }
+  .border {
+    border-color: darkgray !important;
+  }
+
+  body {
+    background-color: rgb(30, 30, 30);
+  }
+
+  input {
+    background-color: rgb(50, 50, 50);
+    color: white;
+  }
+  input:focus {
+    /* outline: none; */
+    outline-color: var(--bs-primary);
+    outline-style: solid;
+    border: none !important;
+  }
+
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    opacity: 0;
+    display: none;
+  }
+}
