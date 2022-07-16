@@ -16,7 +16,7 @@ let urlsToCache = [
   "manifest.json",
 ];
 
-self.addEventListener("install", (event) => {
+self.addEventListener("load", (event) => {
   event.waitUntil(
     caches.open("pwa-assets").then((cache) => {
       cache.addAll(urlsToCache);
