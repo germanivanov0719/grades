@@ -1,5 +1,7 @@
 const CACHE = "GradesCache";
 
+const dirsToCache = [".", "pages", "images", "css"];
+
 importScripts(
   "https://storage.googleapis.com/workbox-cdn/releases/6.5.2/workbox-sw.js"
 );
@@ -10,12 +12,14 @@ self.addEventListener("message", (event) => {
   }
 });
 
-workbox.routing.registerRoute(
-  new RegExp("./*"),
-  new workbox.strategies.StaleWhileRevalidate({
-    cacheName: CACHE,
-  })
-);
+for (dir in dirsToCache) {
+  workbox.routing.registerRoute(
+    new RegExp(dir + "/*"),
+    new workbox.strategies.StaleWhileRevalidate({
+      cacheName: CACHE,
+    })
+  );
+}
 
 // const updateInterval = 24 * 60 * 60 * 1000; // 1 day in ms
 
