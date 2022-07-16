@@ -10,19 +10,22 @@ self.addEventListener("activate", (event) => {
 });
 
 window.addEventListener("load", () => {
-  // Is service worker available?
-  if (navigator.onLine) {
-    caches.delete("pwa-assets");
-  }
-  if ("serviceWorker" in navigator) {
-    navigator.serviceWorker
-      .register("sw.js")
-      .then(() => {
-        console.log("Service worker registered!");
-      })
-      .catch((error) => {
+  register("sw.js");
+  return;
+});
+
+function register(script) {
+  navigator.serviceWorker
+    .register(script)
+    .then(() => {
+      console.log("Service worker registered!");
+    })
+    .catch(() => {
+      try {
+        navigator.serviceWorker.register("../" + script);
+      } catch (error) {
         console.warn("Error registering service worker:");
         console.warn(error);
-      });
-  }
-});
+      }
+    });
+}
