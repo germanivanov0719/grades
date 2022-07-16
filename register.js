@@ -25,7 +25,7 @@ window.addEventListener("load", () => {
 });
 
 window.onbeforeunload = function () {
-  if (document.hasFocus() && window.navigator.onLine) {
+  if (window.navigator.onLine) {
     caches.delete("pwa-assets");
   }
 };
