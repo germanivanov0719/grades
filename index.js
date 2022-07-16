@@ -38,21 +38,16 @@ function getMark(n) {
   let maxGrade = parseFloat(`${goal}.${localStorage["fraction_up"]}`);
   let minGrade = parseFloat(`${goal - 1}.${localStorage["fraction_up"]}`);
   if (minGrade <= n && n < maxGrade) {
-    console.log(n + " -> " + parseInt(goal));
     return parseInt(goal);
   } else if (n < minGrade) {
-    console.log(n + " -> " + parseInt(goal - 1));
     return parseInt(goal - 1);
   }
-  console.log(n + " -> " + parseInt(goal + 1));
   return parseInt(goal + 1);
 }
 
 function calcTillGoal(mean, weight, goal, mark = goal) {
-  console.log(mark, "Now: ", mean, " in q. ", weight);
   let r = 0;
   if (getMark(mean) == goal) {
-    console.log("For " + goal + ": already done");
     return r;
   }
   let negativeR = getMark(mean) > goal;
@@ -82,7 +77,6 @@ function tillGoals(mean, n) {
   for (let i = 0; i < 4; i++) {
     r.push(calcTillGoal(mean, n, 5 - i));
   }
-  console.log(r);
   for (let i = 5; i > 1; i--) {
     if (r[5 - i] == 0) {
       r[5 - i] = "Готово";

@@ -1,61 +1,120 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../index.css">
-    <link rel="icon" href="../images/icon.png">
-    <title>Настройки</title>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y0HKHLCHLM"></script>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Настройки Grades" />
+    <meta name="theme-color" content="#ffffff" />
+    <!-- Icon -->
+    <link defer rel="icon" href="../images/icon512.png" />
+    <link defer rel="icon" href="../images/icon.svg" />
+    <title>Grades</title>
+    <!-- Bootstrap 5.2.0 -->
+    <link
+      defer
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+      crossorigin="anonymous"
+    />
+    <!-- Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-Y0HKHLCHLM"
+    ></script>
     <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-Y0HKHLCHLM');
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-Y0HKHLCHLM");
     </script>
-    <!-- PWA -->
-    <link rel="manifest" href="../manifest.json"/>
-    <script type="module">
-        import 'https://cdn.jsdelivr.net/npm/@pwabuilder/pwaupdate';
-        const el = document.createElement('pwa-update');
-        document.body.appendChild(el);
-    </script>
-    <!-- JQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-</head>
-<body>
-    <div id="navbar">
-        <a class="branding" href="../index.html">Grades</a>
-        <div class="separator"></div>
-        <a href="./settings.html">
-            <span class="material-icons">settings</span>
-        </a>
+    <!-- PWA Manifest -->
+    <link async rel="manifest" href="../manifest.json" />
+    <!-- PWA Web Workers -->
+    <script async type="module" src="../register.js"></script>
+    <!-- custom CSS -->
+    <link
+      defer
+      rel="stylesheet"
+      type="text/css"
+      href="../css/enable-spin-buttons.css"
+    />
+    <link defer rel="stylesheet" type="text/css" href="../css/dark.css" />
+    <link defer rel="stylesheet" type="text/css" href="../css/arrow.css" />
+  </head>
+  <body class="container my-3">
+    <div class="grid">
+      <div class="row align-items-center justify-content-between">
+        <div class="col flex-grow-0 text-nowrap">
+          <a class="text-decoration-none" href="../index.html">
+            <p>
+              <img
+                class="arrow"
+                src="../images/arrow-back.svg"
+                alt="arrow back"
+              />Назад
+            </p>
+          </a>
+        </div>
+        <div class="col flex-grow-0"></div>
       </div>
-    <h1>Настройки</h1>
-    <hr/>
-    <h3>Вычисления</h3>
-    <div id="settings-table">
-        <div id="fraction-block" class="block">
-            <p>Дробная часть для округления в высшую сторону: </p>
-            <div class="separator"></div>
-            <p style="margin-right: 3px;">.</p>
-            <input type="number" id="fraction-input" value="51"></input>
-        </div>
-        <div id="round-calculations" class="block">
-            <p>Округлять значения среднего балла при вычислениях: </p>
-            <input type="checkbox" id="perform-calculations-round" checked=1></input>
-        </div>
     </div>
-    <hr/>
-    <h3>Действия</h3>
-    <div class="block">
-        <button id="save" onclick="save()">Сохранить</button>
-        <button id="reset" onclick="reset()">Сбросить</button>
+    <h1 class="text-center">Настройки</h1>
+    <hr />
+    <h2 class="text-center">Вычисления</h2>
+    <div class="grid">
+      <div class="row">
+        <label class="col text-wrap" for="fraction-input">
+          Дробная часть для округления в высшую сторону:
+        </label>
+        <div class="col text-end row align-items-center justify-content-end">
+          <div class="col-auto my-2 w-0 px-0"><p class="m-0 p-0">.</p></div>
+          <div class="col-auto text-end w-50">
+            <input
+              type="number"
+              class="w-100 border rounded-1"
+              id="fraction-input"
+              value="51"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="row align-items-center">
+        <label class="col my-2" for="perform-calculations-round">
+          Округлять значения среднего балла при вычислениях:
+        </label>
+        <div class="col text-end">
+          <input
+            class="h-50"
+            type="checkbox"
+            id="perform-calculations-round"
+            checked="1"
+          />
+        </div>
+      </div>
     </div>
-</body>
+    <hr />
+    <h2 class="text-center">Действия</h2>
+    <div class="row gap-3">
+      <div class="col-md">
+        <button type="button" class="w-100 btn btn-primary" onclick="save()">
+          Сохранить
+        </button>
+      </div>
+      <div class="col-md">
+        <button
+          type="button"
+          class="w-100 btn btn-outline-primary"
+          onclick="reset()"
+        >
+          Сбросить
+        </button>
+      </div>
+    </div>
+  </body>
 </html>
 <script src="./settings.js"></script>
-<script src='../index.js'></script>
+<script src="../index.js"></script>

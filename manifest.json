@@ -1,17 +1,38 @@
 {
-  "background_color": "#2b2b2b",
+  "background_color": "#ffffff",
   "dir": "ltr",
   "display": "standalone",
   "name": "Grades",
-  "scope": "./",
-  "start_url": "./",
-  "orientation": "any",
+  "scope": ".",
+  "start_url": ".",
   "short_name": "Grades",
-  "theme_color": "#2b2b2b",
+  "theme_color": "#ffffff",
   "icons": [
     {
-      "src": "images/icon.png",
+      "src": "images/icon.svg",
+      "type": "image/svg",
+      "sizes": "150x150"
+    },
+    {
+      "src": "images/icon.svg",
+      "type": "image/svg",
+      "sizes": "150x150",
+      "purpose": "maskable"
+    },
+    {
+      "src": "images/icon512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    },
+    {
+      "src": "images/icon1024.png",
+      "type": "image/png",
       "sizes": "1024x1024"
+    },
+    {
+      "src": "images/icon512.webp",
+      "type": "image/webp",
+      "sizes": "512x512"
     }
   ]
 }
