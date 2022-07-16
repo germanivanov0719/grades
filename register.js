@@ -11,6 +11,9 @@ self.addEventListener("activate", (event) => {
 
 window.addEventListener("load", () => {
   // Is service worker available?
+  if (navigator.onLine) {
+    caches.delete("pwa-assets");
+  }
   if ("serviceWorker" in navigator) {
     navigator.serviceWorker
       .register("sw.js")
@@ -23,9 +26,3 @@ window.addEventListener("load", () => {
       });
   }
 });
-
-window.onbeforeunload = function () {
-  if (window.navigator.onLine) {
-    caches.delete("pwa-assets");
-  }
-};
