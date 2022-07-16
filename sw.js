@@ -25,21 +25,11 @@ self.addEventListener("install", (event) => {
   );
 });
 
-const putInCache = async (request, response) => {
-  const cache = await caches.open("pwa-assets");
-  await cache.put(request, response);
-};
-
-const cacheFirst = async (request) => {
-  const responseFromCache = await caches.match(request);
-  if (responseFromCache) {
-    return responseFromCache;
-  }
-  const responseFromNetwork = await fetch(request);
-  putInCache(request, responseFromNetwork.clone());
-  return responseFromNetwork;
-};
-
 self.addEventListener("fetch", (event) => {
-  event.respondWith(cacheFirst(event.request));
+  event.respondWith(
+    caches.match(event.request).then((cachedResponse) => {
+      // It can update the cache to serve updated content on the next request
+      return cachedResponse || fetch(event.request);
+    })
+  );
 });
