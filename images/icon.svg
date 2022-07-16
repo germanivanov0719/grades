@@ -40,12 +40,12 @@
      inkscape:deskcolor="#d1d1d1"
      showgrid="false"
      inkscape:zoom="4.7559463"
-     inkscape:cx="41.526962"
-     inkscape:cy="56.245378"
+     inkscape:cx="37.742226"
+     inkscape:cy="56.245379"
      inkscape:window-width="1440"
      inkscape:window-height="847"
      inkscape:window-x="0"
-     inkscape:window-y="205"
+     inkscape:window-y="25"
      inkscape:window-maximized="1"
      inkscape:current-layer="svg62" />
   <path
@@ -58,16 +58,12 @@
      inkscape:path-effect="#path-effect282"
      d="M 22.643397,0.49474651 H 77.356602 A 22.14865,22.14865 45 0 1 99.505252,22.643397 v 54.713205 a 22.14865,22.14865 135 0 1 -22.14865,22.14865 H 22.643397 A 22.14865,22.14865 45 0 1 0.49474651,77.356602 V 22.643397 A 22.14865,22.14865 135 0 1 22.643397,0.49474651 Z"
      sodipodi:type="rect" />
-  <text
-     xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:99.7154px;line-height:1.25;font-family:'SF Pro Display';-inkscape-font-specification:'SF Pro Display Bold';display:inline;fill:#000000;stroke-width:0.997154"
-     x="13.848313"
-     y="85.129189"
+  <g
+     aria-label="G"
      id="text368"
-     sodipodi:insensitive="true"><tspan
-       sodipodi:role="line"
-       id="tspan366"
-       x="13.848313"
-       y="85.129189"
-       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:99.7154px;font-family:'SF Pro Display';-inkscape-font-specification:'SF Pro Display Bold';fill:#000000;stroke-width:0.997154">G</tspan></text>
+     style="font-weight:bold;font-size:99.7154px;line-height:1.25;font-family:'SF Pro Display';-inkscape-font-specification:'SF Pro Display Bold';display:inline;stroke-width:0.997154">
+    <path
+       d="m 51.338967,86.346418 c 19.573042,0 31.161063,-11.588021 31.161063,-30.722861 v -8.0824 H 52.117993 v 10.955061 h 16.067423 l -0.04869,1.022472 c -0.389513,8.666671 -6.96255,14.363302 -16.554314,14.363302 -11.685399,0 -19.086151,-9.007494 -19.086151,-24.247201 v -0.04869 c 0,-14.898883 6.96255,-23.468175 18.55057,-23.468175 7.936333,0 13.535587,3.943822 15.872666,10.760304 l 0.194757,0.486892 H 81.867071 L 81.721003,36.683474 C 79.383923,23.488711 67.893281,13.653501 50.998143,13.653501 30.402628,13.653501 17.5,27.237777 17.5,49.732169 v 0.04869 c 0,22.883905 12.853939,36.56556 33.838967,36.56556 z"
+       id="path845" />
+  </g>
 </svg>
