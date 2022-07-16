@@ -60,6 +60,7 @@ function calcTillGoal(mean, weight, goal, mark = goal) {
 }
 
 function tillGoals(mean, n) {
+  // Receive by id if undefined
   mean =
     mean == undefined
       ? (mean = parseFloat(document.getElementById("M1-input").value))
@@ -73,6 +74,24 @@ function tillGoals(mean, n) {
   if (mean == parseFloat(document.getElementById("M1-input").value)) {
     document.getElementById("M2-input").textContent = "Не изменялся";
   }
+
+  // Check for huge numbers
+  if (n > 1000000) {
+    alert(
+      "Вес превысил 1000000. В целях безопасности, количества оценок до целей не будут вычисляться."
+    );
+    return;
+  }
+  if (n > 10000) {
+    if (
+      !confirm(
+        "Вес превысил 10000, вычисления могу занять длительное время. Продолжить?"
+      )
+    ) {
+      return;
+    }
+  }
+
   let r = [];
   for (let i = 0; i < 4; i++) {
     r.push(calcTillGoal(mean, n, 5 - i));
