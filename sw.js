@@ -1,22 +1,3 @@
-// const CACHE = "pwabuilder-precache";
-
-// importScripts(
-//   "https://storage.googleapis.com/workbox-cdn/releases/5.1.2/workbox-sw.js"
-// );
-
-// self.addEventListener("message", (event) => {
-//   if (event.data && event.data.type === "SKIP_WAITING") {
-//     self.skipWaiting();
-//   }
-// });
-
-// workbox.routing.registerRoute(
-//   new RegExp("/*"),
-//   new workbox.strategies.CacheFirst({
-//     cacheName: CACHE,
-//   })
-// );
-
 let urlsToCache = [
   "https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css",
   "index.html",
@@ -38,16 +19,27 @@ let urlsToCache = [
 self.addEventListener("install", (event) => {
   event.waitUntil(
     caches.open("pwa-assets").then((cache) => {
-      return cache.addAll(urlsToCache);
+      cache.addAll(urlsToCache);
+      return;
     })
   );
 });
 
+const putInCache = async (request, response) => {
+  const cache = await caches.open("pwa-assets");
+  await cache.put(request, response);
+};
+
+const cacheFirst = async (request) => {
+  const responseFromCache = await caches.match(request);
+  if (responseFromCache) {
+    return responseFromCache;
+  }
+  const responseFromNetwork = await fetch(request);
+  putInCache(request, responseFromNetwork.clone());
+  return responseFromNetwork;
+};
+
 self.addEventListener("fetch", (event) => {
-  event.respondWith(
-    caches.match(event.request).then((cachedResponse) => {
-      // It can update the cache to serve updated content on the next request
-      return cachedResponse || fetch(event.request);
-    })
-  );
+  event.respondWith(cacheFirst(event.request));
 });

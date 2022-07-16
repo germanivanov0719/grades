@@ -1,7 +1,13 @@
-// import "https://cdn.jsdelivr.net/npm/@pwabuilder/pwaupdate";
+const enableNavigationPreload = async () => {
+  if (self.registration.navigationPreload) {
+    // Enable navigation preloads!
+    await self.registration.navigationPreload.enable();
+  }
+};
 
-// const el = document.createElement("pwa-update");
-// document.body.appendChild(el);
+self.addEventListener("activate", (event) => {
+  event.waitUntil(enableNavigationPreload());
+});
 
 window.addEventListener("load", () => {
   // Is service worker available?
