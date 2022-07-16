@@ -44,6 +44,9 @@
     />
     <link defer rel="stylesheet" type="text/css" href="../css/dark.css" />
     <link defer rel="stylesheet" type="text/css" href="../css/arrow.css" />
+    <!-- My Scripts -->
+    <script defer src="settings.js"></script>
+    <script defer src="../index.js"></script>
   </head>
   <body class="container my-3">
     <div class="grid">
@@ -64,13 +67,15 @@
     <hr />
     <h2 class="text-center">Вычисления</h2>
     <div class="grid">
-      <div class="row">
+      <div class="row justify-content-between p-0">
         <label class="col-6 text-wrap" for="fraction-input">
           Дробная часть для округления в высшую сторону:
         </label>
-        <div class="col-6 text-end row align-items-center justify-content-end">
-          <div class="col-auto my-2 w-0 px-0"><p class="m-0 p-0">.</p></div>
-          <div class="col-auto text-end w-50">
+        <div
+          class="col-6 text-end d-flex align-items-center justify-content-end"
+        >
+          <div class="col-auto w-0"><p class="m-0 mx-1">.</p></div>
+          <div class="col-auto text-end p-0 w-50">
             <input
               type="number"
               class="w-100 border rounded-1"
@@ -89,7 +94,7 @@
             class="h-50"
             type="checkbox"
             id="perform-calculations-round"
-            checked="1"
+            checked
           />
         </div>
       </div>
@@ -114,5 +119,3 @@
     </div>
   </body>
 </html>
-<script src="./settings.js"></script>
-<script src="../index.js"></script>

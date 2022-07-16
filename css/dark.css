@@ -26,11 +26,11 @@
     background-color: rgb(30, 30, 30);
   }
 
-  input {
+  input[type="number"] {
     background-color: rgb(50, 50, 50);
     color: white;
   }
-  input:focus {
+  input[type="number"]:focus {
     /* outline: none; */
     outline-color: var(--bs-primary);
     outline-style: solid;
