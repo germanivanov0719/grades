@@ -16,7 +16,7 @@ let urlsToCache = [
   "manifest.json",
 ];
 
-self.addEventListener("load", (event) => {
+self.addEventListener("install", (event) => {
   event.waitUntil(
     caches.open("pwa-assets").then((cache) => {
       cache.addAll(urlsToCache);
@@ -25,11 +25,17 @@ self.addEventListener("load", (event) => {
   );
 });
 
+const putInCache = async (request, response) => {
+  const cache = await caches.open("pwa-assets");
+  await cache.put(request, response);
+};
+
 self.addEventListener("fetch", (event) => {
-  event.respondWith(
-    caches.match(event.request).then((cachedResponse) => {
-      // It can update the cache to serve updated content on the next request
-      return cachedResponse || fetch(event.request);
-    })
-  );
+  const responseFromCache = await caches.match(event.request);
+  if (responseFromCache) {
+    return responseFromCache;
+  }
+  const responseFromNetwork = await fetch(request);
+  putInCache(request, responseFromNetwork.clone());
+  return responseFromNetwork;
 });
