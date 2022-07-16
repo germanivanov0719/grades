@@ -4,20 +4,22 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#ffffff" />
+    <meta
+      name="description"
+      content="Сайт, который поможет Вам рассчитать средний балл."
+    />
     <!-- Icon -->
-    <link rel="icon" href="images/icon.svg" />
+    <link defer rel="icon" href="images/icon512.png" />
+    <link defer rel="icon" href="images/icon.svg" />
     <title>Grades</title>
     <!-- Bootstrap 5.2.0 -->
     <link
+      defer
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
       rel="stylesheet"
       integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
       crossorigin="anonymous"
-    />
-    <!-- Google Icons -->
-    <link
-      href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet"
     />
     <!-- Google Analytics -->
     <script
@@ -33,12 +35,18 @@
       gtag("config", "G-Y0HKHLCHLM");
     </script>
     <!-- PWA Manifest -->
-    <link rel="manifest" href="manifest.json" />
+    <link async rel="manifest" href="manifest.json" />
     <!-- PWA Web Workers -->
+    <script async type="module" src="register.js"></script>
     <!-- custom CSS -->
-    <link rel="stylesheet" type="text/css" href="css/enable-spin-buttons.css" />
-    <link rel="stylesheet" type="text/css" href="css/dark.css" />
-    <link rel="stylesheet" type="text/css" href="css/arrow.css" />
+    <link
+      defer
+      rel="stylesheet"
+      type="text/css"
+      href="css/enable-spin-buttons.css"
+    />
+    <link defer rel="stylesheet" type="text/css" href="css/dark.css" />
+    <link defer rel="stylesheet" type="text/css" href="css/arrow.css" />
   </head>
   <body class="container my-3">
     <!-- 
@@ -52,7 +60,13 @@
         <div class="col flex-grow-0"></div>
         <div class="col flex-grow-0 text-nowrap">
           <a class="text-decoration-none" href="./pages/settings.html">
-            <p>Настройки<img class="arrow" src="images/arrow-forward.svg" /></p>
+            <p>
+              Настройки<img
+                class="arrow"
+                src="images/arrow-forward.svg"
+                alt="arrow forward"
+              />
+            </p>
           </a>
         </div>
       </div>
@@ -60,11 +74,11 @@
 
     <h1 class="text-center">Калькулятор среднего балла</h1>
     <hr />
-    <h3 class="text-center">Ввод данных</h3>
+    <h2 class="text-center">Ввод данных</h2>
     <div class="grid">
       <div class="row align-items-center my-3">
         <div class="col">
-          <p class="my-2">Начальный средний балл:</p>
+          <label class="my-2" for="M1-input">Начальный средний балл:</label>
         </div>
         <div class="col text-end">
           <input
@@ -76,7 +90,9 @@
       </div>
       <div class="row align-items-center my-3">
         <div class="col">
-          <p class="my-2">Сумма весов уже имеющихся оценок:</p>
+          <label class="my-2" for="s-input"
+            >Сумма весов уже имеющихся оценок:</label
+          >
         </div>
         <div class="col text-end">
           <input
@@ -88,7 +104,7 @@
       </div>
       <div class="row align-items-center my-3">
         <div class="col">
-          <p class="my-2">Новая оценка:</p>
+          <label class="my-2" for="m-input">Новая оценка:</label>
         </div>
         <div class="col text-end">
           <input
@@ -100,7 +116,7 @@
       </div>
       <div class="row align-items-center my-3">
         <div class="col">
-          <p class="my-2">Вес новой оценки:</p>
+          <label class="my-2" for="w-input">Вес новой оценки:</label>
         </div>
         <div class="col text-end">
           <input
@@ -113,7 +129,7 @@
       </div>
     </div>
     <hr />
-    <h3 class="text-center">Функции</h3>
+    <h2 class="text-center">Функции</h2>
     <div class="d-flex align-items-center justify-content-between flex-wrap">
       <div class="text-start align-items-center flex-grow-1 my-3">
         <p class="col m-0">Вычислить:</p>
@@ -140,7 +156,7 @@
       </div>
     </div>
     <hr />
-    <h3 class="text-center">Результаты</h3>
+    <h2 class="text-center">Результаты</h2>
     <div class="grid">
       <div id="M2-block" class="row">
         <p class="col text-start">Средний балл:</p>
@@ -164,7 +180,7 @@
       </div>
     </div>
     <hr />
-    <h3 class="text-center">Контакты</h3>
+    <h2 class="text-center">Контакты</h2>
     <div id="Contacts" class="d-flex justify-content-between">
       <a href="mailto:germanivanov0719@gmail.com">Email</a>
       <a href="https://github.com/germanivanov0719/grades">GitHub</a>
