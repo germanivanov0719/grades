@@ -11,12 +11,12 @@
     {
       "src": "images/icon.svg",
       "type": "image/svg",
-      "sizes": "100x100"
+      "sizes": "150x150"
     },
     {
       "src": "images/icon.svg",
       "type": "image/svg",
-      "sizes": "100x100",
+      "sizes": "150x150",
       "purpose": "maskable"
     },
     {
