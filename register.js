@@ -1,3 +1,5 @@
+const swPaths = ["/grades/sw.js", "/sw.js", "./sw.js", "../sw.js"];
+
 const enableNavigationPreload = async () => {
   if (self.registration.navigationPreload) {
     // Enable navigation preloads!
@@ -10,22 +12,23 @@ self.addEventListener("activate", (event) => {
 });
 
 window.addEventListener("load", () => {
-  register("sw.js");
-  return;
+  register();
 });
 
-function register(script) {
-  navigator.serviceWorker
-    .register(script)
-    .then(() => {
+async function register() {
+  for (let i = 0; i < swPaths.length; i++) {
+    try {
+      await navigator.serviceWorker.register(swPaths[i]);
       console.log("Service worker registered!");
-    })
-    .catch(() => {
-      try {
-        navigator.serviceWorker.register("../" + script);
-      } catch (error) {
-        console.warn("Error registering service worker:");
-        console.warn(error);
-      }
-    });
+      return true;
+    } catch (error) {
+      console.warn(
+        "Failed to register service worker on path " +
+          swPaths[i] +
+          ": \n\n" +
+          error
+      );
+    }
+  }
+  return false;
 }
