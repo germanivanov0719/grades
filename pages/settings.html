@@ -46,6 +46,7 @@
     <!-- My Scripts -->
     <script defer src="settings.js"></script>
     <script defer src="../index.js"></script>
+    <script async src="../version.js"></script>
   </head>
   <body class="container my-3">
     <div class="grid">
@@ -115,6 +116,16 @@
         >
           Сбросить
         </button>
+      </div>
+    </div>
+    <hr class="mt-5" />
+    <div class="d-flex justify-content-between">
+      <div class="row align-items-center">
+        <p class="col-6 text-muted m-0">Версия:</p>
+        <p id="version" class="col-6 text-muted px-1 m-0">получаем...</p>
+      </div>
+      <div id="update" class="text-muted" onclick="update()">
+        Проверяем статус
       </div>
     </div>
   </body>
