@@ -24,6 +24,7 @@ async function update() {
   document.getElementById("update").textContent = "Обновляем...";
   if (navigator.onLine) {
     caches.delete("GradesCache");
+    localStorage.removeItem("version");
     location.reload();
   } else {
     document.getElementById("update").textContent = "Офлайн";
@@ -44,3 +45,9 @@ window.ononline = window.onoffline = updateStatus;
 
 updateStatus();
 setVersion();
+
+getVersion.then((version) => {
+  if (version != localStorage["version"] && navigator.onLine) {
+    update();
+  }
+});

@@ -10,7 +10,6 @@ let urlsToCache = [
   "images/icon512.webp",
   "css/arrow.css",
   "css/dark.css",
-  "https://api.github.com/repos/germanivanov0719/grades/commits/release",
   "css/enable-spin-buttons.css",
   "pages/settings.html",
   "pages/settings.js",
