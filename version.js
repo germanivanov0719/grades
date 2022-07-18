@@ -1,7 +1,13 @@
+const CACHE = "GradesCache";
+const URL =
+  "https://api.github.com/repos/germanivanov0719/grades/commits/release";
+fetch(URL); // Make sure version commit hash gets cached
+
 async function getVersion() {
-  r = await fetch(
-    "https://api.github.com/repos/germanivanov0719/grades/commits/release"
-  );
+  let r = await fetch(URL);
+  if (r == undefined) {
+    return "N/A";
+  }
   j = await r.json();
   return j["sha"].slice(0, 7);
 }
