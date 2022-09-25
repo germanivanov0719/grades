@@ -23,7 +23,7 @@ async function setVersion() {
 async function update() {
   document.getElementById("update").textContent = "Обновляем...";
   if (navigator.onLine) {
-    caches.delete("GradesCache");
+    caches.delete(CACHE);
     localStorage.removeItem("version");
     location.reload();
   } else {
@@ -46,8 +46,10 @@ window.ononline = window.onoffline = updateStatus;
 updateStatus();
 setVersion();
 
-getVersion.then((version) => {
+let initFunction = async () => {
+  let version = await getVersion();
   if (version != localStorage["version"] && navigator.onLine) {
     update();
   }
-});
+};
+initFunction();
