@@ -3,12 +3,16 @@ const URL =
   "https://api.github.com/repos/germanivanov0719/grades/commits/release";
 
 async function getVersion() {
-  let r = await fetch(URL);
-  if (r == undefined) {
-    return "N/A";
+  try {
+    let r = await fetch(URL);
+    if (r == undefined) return "Проблемы с подключением";
+    if (r.statusText == "Forbidden") return "Слишком много запросов";
+    if (!r.ok) return "Ошибка сервера, напишите мне";
+    j = await r.json();
+    return j["sha"].slice(0, 7);
+  } catch (e) {
+    return "Неизвестная ошибка";
   }
-  j = await r.json();
-  return j["sha"].slice(0, 7);
 }
 
 async function setVersion() {
@@ -17,11 +21,13 @@ async function setVersion() {
   }
   let v = localStorage["version"];
   console.log("Version (localStorage): " + v);
-  document.getElementById("version").textContent = v;
+  if (document.getElementById("version"))
+    document.getElementById("version").textContent = v;
 }
 
 async function update() {
-  document.getElementById("update").textContent = "Обновляем...";
+  document.getElementById("update").textContent = "Обновляем…";
+  setUnderline(false);
   if (navigator.onLine) {
     caches.delete(CACHE);
     localStorage.removeItem("version");
@@ -34,16 +40,24 @@ async function update() {
 async function updateStatus() {
   if (navigator.onLine) {
     document.getElementById("update").textContent = "Обновить сейчас";
-    document.getElementById("update").style.textDecoration = "underline";
+    setUnderline(true);
   } else {
     document.getElementById("update").textContent = "Офлайн";
-    document.getElementById("update").style.textDecoration = "none";
+    setUnderline(false);
   }
+}
+
+async function setUnderline(enabled = true) {
+  document.getElementById("update").style.textDecoration = enabled
+    ? "underline"
+    : "none";
 }
 
 window.ononline = window.onoffline = updateStatus;
 
-updateStatus();
+if (document.getElementById("update")) {
+  updateStatus();
+}
 setVersion();
 
 let initFunction = async () => {
