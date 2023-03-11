@@ -44,6 +44,7 @@
     <script defer src="settings.js"></script>
     <script defer src="../index.js"></script>
   </head>
+
   <body class="container my-3">
     <div class="grid">
       <div class="row align-items-center justify-content-between">
@@ -112,16 +113,19 @@
     </div>
     <hr class="mt-5" />
   </body>
-  <footer class="d-flex flex-wrap justify-content-between g-3">
-    <div class="d-flex">
-      <p class="text-muted" style="margin-right: 1em">Версия: </p>
-      <p id="version" class="text-muted">получаем…</p>
+  <footer class="d-flex flex-wrap justify-content-between mb-2">
+    <div class="d-flex flex-grow-1 mx-3">
+      <p
+        class="text-muted text-nowrap text-center my-1"
+        style="margin-right: 0.5em">
+        Версия:
+      </p>
+      <p id="version" class="text-muted text-nowrap text-center my-1">
+        получаем…
+      </p>
     </div>
-    <div
-      id="update"
-      class="text-muted justify-content-end"
-      onclick="update()">
-      Проверяем статус…
+    <div class="text-muted justify-content-end mx-3" onclick="update()">
+      <p id="update" class="text-muted text-nowrap my-1">Проверяем статус…</p>
     </div>
   </footer>
   <script async src="../version.js"></script>
