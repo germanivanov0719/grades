@@ -53,11 +53,14 @@
 
   <body class="container my-3">
     <!-- 
-        M1 — mean before the new grade 
-        s — sum of all previous grades' weights 
-        m — new grade
-        w — weight of new grade
-        M2 — result (new mean) -->
+      Variables:
+        M0: original mean value 
+        W0: original weight sum
+        x: new grade value
+        w: new grade weight
+        M1: new mean value
+        W1: new weight sum 
+      -->
     <div class="grid mb-2 mb-lg-1">
       <div class="row align-items-center justify-content-between">
         <div class="col flex-grow-0"></div>
@@ -80,18 +83,18 @@
     <div class="grid">
       <div class="row align-items-center my-3">
         <div class="col">
-          <label class="my-2" for="M1-input">Начальный средний балл:</label>
+          <label class="my-2" for="M0-input">Начальный средний балл:</label>
         </div>
         <div class="col text-end">
           <input
             class="text-end w-50 rounded-1 border"
             type="number"
-            id="M1-input" />
+            id="M0-input" />
         </div>
       </div>
       <div class="row align-items-center my-3">
         <div class="col">
-          <label class="my-2" for="s-input">
+          <label class="my-2" for="W0-input">
             Сумма весов уже имеющихся оценок:
           </label>
         </div>
@@ -99,18 +102,18 @@
           <input
             class="text-end w-50 rounded-1 border"
             type="number"
-            id="s-input" />
+            id="W0-input" />
         </div>
       </div>
       <div class="row align-items-center my-3">
         <div class="col">
-          <label class="my-2" for="m-input">Новая оценка:</label>
+          <label class="my-2" for="x-input">Новая оценка:</label>
         </div>
         <div class="col text-end">
           <input
             class="text-end w-50 rounded-1 border"
             type="number"
-            id="m-input" />
+            id="x-input" />
         </div>
       </div>
       <div class="row align-items-center my-3">
@@ -154,9 +157,9 @@
     <hr />
     <h2 class="text-center">Результаты</h2>
     <div class="grid">
-      <div id="M2-block" class="row">
+      <div id="M1-block" class="row">
         <p class="col text-start">Средний балл:</p>
-        <p id="M2-input" class="col text-end">—</p>
+        <p id="M1-input" class="col text-end">—</p>
       </div>
       <div id="5-block" class="row">
         <p class="col text-start">До 5:</p>

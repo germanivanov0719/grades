@@ -5,24 +5,24 @@ function populateStorage() {
     localStorage["fraction_up"] = "51";
   }
   if (!localStorage["perform-calculations-round"]) {
-    localStorage["perform-calculations-round"] = "True";
+    localStorage["perform-calculations-round"] = "False";
   }
 }
 
 function newMean() {
-  let M1 = parseFloat(document.getElementById("M1-input").value);
-  let s = parseFloat(document.getElementById("s-input").value);
-  let m = parseFloat(document.getElementById("m-input").value);
+  let M0 = parseFloat(document.getElementById("M0-input").value);
+  let W0 = parseFloat(document.getElementById("W0-input").value);
+  let x = parseFloat(document.getElementById("x-input").value);
   let w = parseFloat(document.getElementById("w-input").value);
 
-  let res = (s * M1 + m * w) / (s + w);
+  let res = (W0 * M0 + x * w) / (W0 + w);
   if (!res) {
     alert("Недостаточно данных");
     return 0;
   }
 
-  document.getElementById("M2-input").textContent = res.toFixed(3);
-  tillGoals(res, s + w);
+  document.getElementById("M1-input").textContent = res.toFixed(3);
+  tillGoals(res, W0 + w);
 }
 
 function customRound(n) {
