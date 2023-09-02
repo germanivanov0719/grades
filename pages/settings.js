@@ -20,7 +20,7 @@ function save() {
 }
 
 function reset() {
-  localStorage["perform-calculations-round"] = "true";
+  localStorage["perform-calculations-round"] = "false";
   localStorage["fraction_up"] = "51";
   window.location.reload();
 }

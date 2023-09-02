@@ -1,15 +1,12 @@
 populateStorage();
 
 function populateStorage() {
-  if (!localStorage["rounding_value"]) {
-    localStorage["rounding_value"] = "51";
-  }
-  if (!localStorage["perform-calculations-round"]) {
-    localStorage["perform-calculations-round"] = "False";
-  }
+  if (!localStorage["rounding_value"]) localStorage["rounding_value"] = "51";
+  if (!localStorage["perform-calculations-round"])
+    localStorage["perform-calculations-round"] = "false";
 }
 
-function getVariable(name) {
+function getVariable(name, allowNegative = true) {
   let element = document.getElementById(name);
   let s = element.value;
   // Remove character other than numbers, points and minuses
@@ -21,11 +18,11 @@ function getVariable(name) {
   let negative = s.includes("-");
   s = s.replace(/\-/g, "");
   while (s.substring(0, 2).match(/0[0-9]+/g)) s = s.substring(1);
-  s = negative ? "-" + s : s;
+  s = negative && allowNegative ? "-" + s : s;
 
   element.value = s;
   if (s) {
-    return parseFloat(s);
+    return new Decimal(s);
   }
   return undefined;
 }
@@ -35,11 +32,63 @@ function newMean() {
   let W0 = getVariable("W0-new");
   let x = getVariable("x-new");
   let w = getVariable("w-new");
-  if (!M0 || !W0 || !x || !w) return;
+  // if (!M0 || !W0 || !x || !w) return;
 
-  let M1 = (W0 * M0 + x * w) / (W0 + w);
+  try {
+    let M1 = W0.times(M0).plus(x.times(w)) / W0.plus(w);
+    document.getElementById("M1-new").textContent = M1.toFixed(5);
+  } catch (E) {
+    document.getElementById("M1-new").textContent = NaN;
+  }
+}
 
-  document.getElementById("M1-new").textContent = M1;
+function nounWithNumeralRussian(value, words) {
+  value = Math.abs(value) % 100;
+  var num = value % 10;
+  if (value > 10 && value < 20) return words[2];
+  if (num > 1 && num < 5) return words[1];
+  if (num == 1) return words[0];
+  return words[2];
+}
+
+function getGoalLowerBound(goal) {
+  return new Decimal(`${--goal}.${localStorage["rounding_value"]}`);
+}
+function getGoalUpperBound(goal) {
+  return new Decimal(`${goal}.${localStorage["rounding_value"]}`);
+}
+
+function tillGoal() {
+  let M0 = getVariable("M0-goal");
+  let W0 = getVariable("W0-goal");
+  let goal = getVariable("goal-value");
+  let x = getVariable("x-goal");
+  let M1 =
+    getGoalLowerBound(goal) < M0
+      ? getGoalUpperBound(goal)
+      : getGoalLowerBound(goal);
+
+  try {
+    let w = W0.times(M0.minus(M1)).div(M1.minus(x));
+    if (getGoalLowerBound(goal) < M0 < getGoalUpperBound(goal)) {
+      document.getElementById("impossible-goal").hidden = true;
+      w = 0;
+    }
+    else if (w < 0) {
+      document.getElementById("impossible-goal").hidden = false;
+    } else {
+      document.getElementById("impossible-goal").hidden = true;
+    }
+    document.getElementById("whole-goal").textContent =
+      Math.ceil(w) +
+      " " +
+      nounWithNumeralRussian(Math.ceil(w), ["раз", "раза", "раз"]);
+    document.getElementById("w-goal").textContent = w;
+  } catch (e) {
+    document.getElementById("impossible-goal").hidden = true;
+    document.getElementById("whole-goal").textContent = "NaN раз";
+    document.getElementById("w-goal").textContent = w;
+  }
 }
 
 function customRound(n) {
@@ -76,40 +125,6 @@ function calcTillGoal(mean, weight, goal, mark = goal) {
   return r;
 }
 
-function nounWithNumeralRussian(value, words) {
-  value = Math.abs(value) % 100;
-  var num = value % 10;
-  if (value > 10 && value < 20) return words[2];
-  if (num > 1 && num < 5) return words[1];
-  if (num == 1) return words[0];
-  return words[2];
-}
-
-function getGoalMeanByGoalValue(goal) {
-  return parseFloat(`${--goal}.${localStorage["rounding_value"]}`);
-}
-
-function tillGoal() {
-  let M0 = getVariable("M0-goal");
-  let W0 = getVariable("W0-goal");
-  let goal = getVariable("goal-value");
-  let x = getVariable("x-goal");
-  let M1 = getGoalMeanByGoalValue(goal);
-  // if (!M0 || !W0 || !goal || !x || !M1) return;
-
-  let w = (W0 * (M0 - M1)) / (M1 - x);
-
-  if (w < 0) {
-    document.getElementById("impossible-goal").hidden = false;
-  } else {
-    document.getElementById("impossible-goal").hidden = true;
-  }
-  document.getElementById("whole-goal").textContent =
-    Math.ceil(w) +
-    " " +
-    nounWithNumeralRussian(Math.ceil(w), ["раз", "раза", "раз"]);
-  document.getElementById("w-goal").textContent = w;
-}
 function tillGoals(mean, n) {
   // Receive by id if undefined
   mean =
