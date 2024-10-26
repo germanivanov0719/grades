@@ -36,9 +36,9 @@ urlsToCache.forEach((url) => {
     new workbox.strategies.StaleWhileRevalidate({
       cacheName: CACHE,
       plugins: [
-        // Force expire every 2 months
+        // Force expire every 2 weeks
         new workbox.expiration.ExpirationPlugin({
-          maxAgeSeconds: 2 * 30 * 24 * 60 * 60,
+          maxAgeSeconds: 2 * 14 * 24 * 60 * 60,
         }),
       ],
     })
