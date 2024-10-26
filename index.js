@@ -19,8 +19,11 @@ function getVariable(name, allowNegative = true) {
   s = s.replace(/\-/g, "");
   while (s.substring(0, 2).match(/0[0-9]+/g)) s = s.substring(1);
   s = negative && allowNegative ? "-" + s : s;
+  element.value = s;
   if (s) {
-    return new Decimal(s);
+    try {
+      return new Decimal(s);
+    } catch (E) {}
   }
   return undefined;
 }
@@ -61,6 +64,7 @@ function tillGoal() {
   let W0 = getVariable("W0-goal");
   let goal = getVariable("goal-value");
   let x = getVariable("x-goal");
+  if (!M0 || !W0 || !goal || !x) return;
   let M1 =
     getGoalLowerBound(goal) < M0
       ? getGoalUpperBound(goal)
