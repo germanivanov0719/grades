@@ -65,7 +65,7 @@ function tillGoal() {
     getGoalLowerBound(goal) < M0
       ? getGoalUpperBound(goal)
       : getGoalLowerBound(goal);
-  if (M0.isNaN() || W0.isNaN() || goal.isNaN() || x.isNaN()) {
+  if (false && (M0.isNaN || W0.isNaN || goal.isNaN || x.isNaN)) {
     document.getElementById("impossible-goal").hidden = true;
     document.getElementById("whole-goal").textContent = "NaN раз";
     document.getElementById("w-goal").textContent = "NaN";
