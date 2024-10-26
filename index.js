@@ -17,7 +17,6 @@ function getVariable(name, allowNegative = true) {
       s.substring(0, s.lastIndexOf(".")) + s.substring(s.lastIndexOf(".") + 1);
   let negative = s.includes("-");
   s = s.replace(/\-/g, "");
-  console.log(s);
   while (s.substring(0, 2).match(/0[0-9]+/g)) s = s.substring(1);
   s = negative && allowNegative ? "-" + s : s;
   if (s) {
@@ -66,10 +65,18 @@ function tillGoal() {
     getGoalLowerBound(goal) < M0
       ? getGoalUpperBound(goal)
       : getGoalLowerBound(goal);
+  if (M0.isNaN() || W0.isNaN() || goal.isNaN() || x.isNaN()) {
+    document.getElementById("impossible-goal").hidden = true;
+    document.getElementById("whole-goal").textContent = "NaN раз";
+    document.getElementById("w-goal").textContent = "NaN";
+    return;
+  }
   try {
     let w = W0.times(M0.minus(M1)).div(M1.minus(x)).toNumber();
-    console.log(w)
-    if (getGoalLowerBound(goal).lessThan(M0) && M0.lessThan(getGoalUpperBound(goal))) {
+    if (
+      getGoalLowerBound(goal).lessThan(M0) &&
+      M0.lessThan(getGoalUpperBound(goal))
+    ) {
       document.getElementById("impossible-goal").hidden = true;
       w = 0;
     } else if (w < 0) {
@@ -81,7 +88,6 @@ function tillGoal() {
       Math.ceil(w) +
       " " +
       nounWithNumeralRussian(Math.ceil(w), ["раз", "раза", "раз"]);
-      console.log(document.getElementById("whole-goal").textContent)
     document.getElementById("w-goal").textContent = w.toFixed(2);
   } catch (e) {
     document.getElementById("impossible-goal").hidden = true;
