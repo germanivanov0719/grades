@@ -1,0 +1,21 @@
+.inline-input {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  padding: 0 2px;
+  border-radius: 2px;
+  border-width: 0.5px;
+  border-color: rgb(154, 154, 154);
+  box-shadow: 0;
+  border-style: solid;
+  height: 1.5em;
+  width: 5em;
+  text-align: right;
+}
+
+.inline-input:focus {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  outline: 0;
+}

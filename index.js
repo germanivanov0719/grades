@@ -1,28 +1,99 @@
 populateStorage();
 
 function populateStorage() {
-  if (!localStorage["fraction_up"]) {
-    localStorage["fraction_up"] = "51";
+  if (!localStorage["rounding_value"]) localStorage["rounding_value"] = "51";
+  if (!localStorage["perform-calculations-round"])
+    localStorage["perform-calculations-round"] = "false";
+}
+
+function getVariable(name, allowNegative = true) {
+  let element = document.getElementById(name);
+  let s = element.value;
+  // Remove character other than numbers, points and minuses
+  s = s.replace(",", ".").replace(/[^0-9\.\-]+/g, "");
+  // Remove more than one floating point
+  while (s.split(".").length > 2)
+    s =
+      s.substring(0, s.lastIndexOf(".")) + s.substring(s.lastIndexOf(".") + 1);
+  let negative = s.includes("-");
+  s = s.replace(/\-/g, "");
+  while (s.substring(0, 2).match(/0[0-9]+/g)) s = s.substring(1);
+  s = negative && allowNegative ? "-" + s : s;
+  if (s) {
+    return new Decimal(s);
   }
-  if (!localStorage["perform-calculations-round"]) {
-    localStorage["perform-calculations-round"] = "True";
-  }
+  return undefined;
 }
 
 function newMean() {
-  let M1 = parseFloat(document.getElementById("M1-input").value);
-  let s = parseFloat(document.getElementById("s-input").value);
-  let m = parseFloat(document.getElementById("m-input").value);
-  let w = parseFloat(document.getElementById("w-input").value);
+  let M0 = getVariable("M0-new");
+  let W0 = getVariable("W0-new");
+  let x = getVariable("x-new");
+  let w = getVariable("w-new");
+  // if (!M0 || !W0 || !x || !w) return;
 
-  let res = (s * M1 + m * w) / (s + w);
-  if (!res) {
-    alert("Недостаточно данных");
-    return 0;
+  try {
+    let M1 = W0.times(M0).plus(x.times(w)) / W0.plus(w);
+    document.getElementById("M1-new").textContent = M1.toFixed(5);
+  } catch (E) {
+    document.getElementById("M1-new").textContent = NaN;
   }
+}
 
-  document.getElementById("M2-input").textContent = res.toFixed(3);
-  tillGoals(res, s + w);
+function nounWithNumeralRussian(value, words) {
+  value = Math.abs(value) % 100;
+  var num = value % 10;
+  if (value > 10 && value < 20) return words[2];
+  if (num > 1 && num < 5) return words[1];
+  if (num == 1) return words[0];
+  return words[2];
+}
+
+function getGoalLowerBound(goal) {
+  return new Decimal(`${--goal}.${localStorage["rounding_value"]}`);
+}
+function getGoalUpperBound(goal) {
+  return new Decimal(`${goal}.${localStorage["rounding_value"]}`);
+}
+
+function tillGoal() {
+  let M0 = getVariable("M0-goal");
+  let W0 = getVariable("W0-goal");
+  let goal = getVariable("goal-value");
+  let x = getVariable("x-goal");
+  let M1 =
+    getGoalLowerBound(goal) < M0
+      ? getGoalUpperBound(goal)
+      : getGoalLowerBound(goal);
+  if (M0.isNaN() || W0.isNaN() || goal.isNaN() || x.isNaN()) {
+    document.getElementById("impossible-goal").hidden = true;
+    document.getElementById("whole-goal").textContent = "NaN раз";
+    document.getElementById("w-goal").textContent = "NaN";
+    return;
+  }
+  try {
+    let w = W0.times(M0.minus(M1)).div(M1.minus(x)).toNumber();
+    if (
+      getGoalLowerBound(goal).lessThan(M0) &&
+      M0.lessThan(getGoalUpperBound(goal))
+    ) {
+      document.getElementById("impossible-goal").hidden = true;
+      w = 0;
+    } else if (w < 0) {
+      document.getElementById("impossible-goal").hidden = false;
+    } else {
+      document.getElementById("impossible-goal").hidden = true;
+    }
+    document.getElementById("whole-goal").textContent =
+      Math.ceil(w) +
+      " " +
+      nounWithNumeralRussian(Math.ceil(w), ["раз", "раза", "раз"]);
+    document.getElementById("w-goal").textContent = w.toFixed(2);
+  } catch (e) {
+    document.getElementById("impossible-goal").hidden = true;
+    document.getElementById("whole-goal").textContent = "NaN раз";
+    document.getElementById("w-goal").textContent = w;
+  }
 }
 
 function customRound(n) {
@@ -35,8 +106,8 @@ function customRound(n) {
 
 function getMark(n) {
   let goal = parseInt(n);
-  let maxGrade = parseFloat(`${goal}.${localStorage["fraction_up"]}`);
-  let minGrade = parseFloat(`${goal - 1}.${localStorage["fraction_up"]}`);
+  let maxGrade = parseFloat(`${goal}.${localStorage["rounding_value"]}`);
+  let minGrade = parseFloat(`${goal - 1}.${localStorage["rounding_value"]}`);
   if (minGrade <= n && n < maxGrade) {
     return parseInt(goal);
   } else if (n < minGrade) {
@@ -67,7 +138,7 @@ function tillGoals(mean, n) {
       : mean;
   n = n == undefined ? parseFloat(document.getElementById("s-input").value) : n;
 
-  if (!mean || !n || !localStorage["fraction_up"]) {
+  if (!mean || !n || !localStorage["rounding_value"]) {
     alert("Недостаточно данных");
     return 0;
   }
